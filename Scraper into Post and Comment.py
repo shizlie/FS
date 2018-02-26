@@ -52,7 +52,7 @@ list_comment_likeCount =[]
 comment_data = {}
 comment_data['comment'] =[]
 #store reaction info
-list_reaction_source =[]
+list_discussion =[]
 
 def get_place_info(placename):
     graph = GraphAPI(token)
@@ -94,7 +94,7 @@ def get_feed_post(place_id,place_name,token,time1,time2,after=""): #get availabl
             list_post_content.append(post_content)
             list_post_createdTime.append(post_created_time)
             list_post_shareCount.append(post_share_count)
-            list_reaction_source.append(post_id)
+            list_discussion.append(post_id)
             
             post_data['post'].append({
                     'Place': place_name,
@@ -146,7 +146,7 @@ def get_feed_post_group(place_name,API_call,token): #get available post_id from 
                 list_post_content.append(post_content)
                 list_post_createdTime.append(post_created_time)
                 list_post_shareCount.append(post_share_count)
-                list_reaction_source.append(post_id)
+                list_discussion.append(post_id)
                 
                 post_data['post'].append({
                     'Place': place_name,
@@ -198,7 +198,7 @@ def get_comment(post_id,place_name,token,after=""):
             list_comment_createdTime.append(comment_created_time)
             list_comment_type.append("Comment")
             list_comment_likeCount.append(comment_likecount)
-            list_reaction_source.append(comment_id)
+            list_discussion.append(comment_id)
             
             comment_data['comment'].append({
                     'Place': place_name,
@@ -236,7 +236,7 @@ def get_comment(post_id,place_name,token,after=""):
                     list_comment_createdTime.append(comment_created_time)
                     list_comment_type.append("Comment Reply")
                     list_comment_likeCount.append(comment_likecount)
-                    list_reaction_source.append(reply_id)
+                    list_discussion.append(reply_id)
                     
                     comment_data['comment'].append({
                     'Place': place_name,
@@ -363,11 +363,11 @@ if __name__ == "__main__":
 	wb.close()
 	print("Done Comment")
 
-	with open("Reaction Source.csv","w",newline='',errors="replace") as f:
+	with open("Discussion.csv","w",newline='',errors="replace") as f:
 		fw = csv.writer(f)
-		for i in range(0,len(list_reaction_source)):
+		for i in range(0,len(list_discussion)):
 			try:
-				fw.writerow([i,list_reaction_source[i]]) 
+				fw.writerow([i,list_discussion[i]]) 
 			except Exception as e:
 				print(e)
 				pass
