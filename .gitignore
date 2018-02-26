@@ -1,6 +1,9 @@
 #My personal
 *.ipynb
 Crash Zone
+*.csv
+*.json
+*.xlsx
 
 
 
